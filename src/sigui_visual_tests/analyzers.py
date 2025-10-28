@@ -24,7 +24,7 @@ def make_nn64_analyzer():
     rec, sort = si.generate_ground_truth_recording(
         probe = probe,
         num_units=50,
-        durations=[600],
+        durations=[300],
     )
 
     nn_analyzer = si.create_sorting_analyzer(sort, rec)
@@ -35,6 +35,19 @@ def make_NP1_analyzer():
     rec, _, sort = si.generate_drifting_recording()
     NP1_analyzer = si.create_sorting_analyzer(sort, rec)
     return NP1_analyzer
+
+def make_NP2_analyzer():
+
+    probe = pi.read_probeinterface(Path(__file__).absolute().parent / Path('resources/np2_4shank.json')).probes[0]
+    rec, sort = si.generate_ground_truth_recording(
+        probe = probe,
+        num_units=100,
+        durations=[300],
+    )
+
+    NP2_analyzer = si.create_sorting_analyzer(sort, rec)
+    return NP2_analyzer
+
 
 
 def make_analyzers():
@@ -48,6 +61,7 @@ def make_analyzers():
         'tetrode': make_tetrode_analyzer,
         'NP1': make_NP1_analyzer,
         'nn64': make_nn64_analyzer,
+        'NP2': make_NP2_analyzer
     }
 
     for analyzer_name, make_function in compute_analyzer_dict.items():
