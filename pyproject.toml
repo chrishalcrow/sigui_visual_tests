@@ -1,0 +1,25 @@
+[project]
+name = "sigui-visual-tests"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+authors = [
+    { name = "chrishalcrow", email = "chrishalcrow@gmail.com" }
+]
+requires-python = ">=3.11"
+dependencies = [
+    "probeinterface>=0.3.0",
+    "scipy>=1.16.2",
+    "spikeinterface>=0.103.0",
+    "spikeinterface-gui",
+]
+
+[project.scripts]
+sigui-visual-tests = "sigui_visual_tests:main"
+
+[build-system]
+requires = ["uv_build>=0.8.22,<0.9.0"]
+build-backend = "uv_build"
+
+[tool.uv.sources]
+spikeinterface-gui = { path = "../spikeinterface-gui", editable = true }
